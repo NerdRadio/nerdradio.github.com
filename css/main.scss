@@ -1,0 +1,10 @@
+$body_background = #3C3C3C;
+
+@mixin corners ($radii) {
+	border-radius: $radii;
+	-moz-border-radius: $radii;
+}
+
+body {
+	background: $body_background;
+}
