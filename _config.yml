@@ -1,0 +1,5 @@
+auto:           false
+server:         false
+safe:           true
+source:         .
+exclude:        ./Rakefile

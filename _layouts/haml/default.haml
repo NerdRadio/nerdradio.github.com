@@ -1,0 +1,33 @@
+!!! 5
+%html
+	%head
+		%meta{:charset => "utf-8"}
+		%meta{:content => "description", :name => "description"}
+		%title="Nerd Radio"
+		%link{:rel => 'stylesheet', :media => 'screen', :href => 'css/main.css'}
+		/[if lt IE 7 ]
+			%script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
+	%body
+		%header.site
+			.main
+				.logo
+				%nav
+					%ul
+						%li
+							%a{:href=>"#"} Home
+						%li
+							%a{:href=>"#"} About
+						%li
+							%a{:href=>"#"} Episodes
+						%li
+							%a{:href=>"#"} Guests
+						%li
+							%a{:href=>"#"} Conferences
+			.sub
+				#envato_dropdown
+				%a{:href=>"#"} Subscribe
+				%a{:href=>"#"} Twitter
+				%form#search_form{:method => 'post', :action => '#'}
+					%input{:type => 'text', :name => 'search', :placeholder => 'search'}
+					%input{:type => 'submit', :name => 'submit', :value => 'submit'}
+		{{ content }}
