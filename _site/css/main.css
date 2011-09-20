@@ -102,11 +102,10 @@ header.site .main {
   -webkit-box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.5); }
 header.site nav {
-  display: block;
-  width: 398px;
+  display: inline-block;
   height: 38px;
   right: 82px;
-  top: 24px;
+  top: 16px;
   padding: 8px 12px 8px 0;
   position: absolute;
   border-width: 8px 6px 5px 6px;
