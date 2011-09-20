@@ -18,7 +18,7 @@ body {
 
 .middle {
 	width: 960px;
-	margin: auto;
+	margin: 0 auto;
 	position: relative;
 }
 
@@ -39,15 +39,32 @@ header.site {
 	}
 	nav {
 		display: block;
-		width: 365px;
-		height: 54px;
+		width: 398px;
+		height: 38px;
 		right: 82px;
 		top: 24px;
+		padding: 8px 12px 8px 0;
 		position: absolute;
 		border-width: 8px 6px 5px 6px;
 		-moz-border-image: url('../img/dial_border.png') 8 6 5 6 stretch;
 		-webkit-border-image: url('../img/dial_border.png') 8 6 5 6 stretch;
 		border-image: url('../img/dial_border.png') 8 6 5 6 stretch;
-		background: #FFF;
+		background: url('../img/dial_seperator_first.png') right center no-repeat #FFF;
+	}
+	li {
+		padding: 0 4px 0 24px;
+		background: url('../img/dial_seperator_middle.png') left center no-repeat;
+		float: left;
+		a {
+			font-family: 'Six Caps', sans-serif;
+			font-size: 34px;
+			text-decoration: none;
+			color: #2183AD;
+			text-transform: uppercase;
+		}
+	}
+	li:first-child {
+		padding-left: 14px;
+		background: url('../img/dial_seperator_first.png') left center no-repeat;
 	}
 }
