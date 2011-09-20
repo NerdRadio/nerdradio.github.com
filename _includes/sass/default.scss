@@ -53,7 +53,7 @@ header.site {
 	nav:before {
 		position: absolute;
 		left: -55px;
-		bottom: -20px;
+		bottom: -25px;
 		content: url('../img/phones.png');
 	}
 	nav:after {
@@ -66,12 +66,22 @@ header.site {
 		padding: 0 4px 0 24px;
 		background: url('../img/dial_seperator_middle.png') left center no-repeat;
 		float: left;
+		position: relative;
 		a {
 			font-family: 'Six Caps', sans-serif;
 			font-size: 34px;
 			text-decoration: none;
 			color: #2183AD;
 			text-transform: uppercase;
+		}
+		a.selected {
+			color: #4D4D4D;
+		}
+		a.selected:after{
+			position: absolute;
+			top: -14px;
+			left: 38px;
+			content: url('../img/needle.png');
 		}
 	}
 	li:first-child {

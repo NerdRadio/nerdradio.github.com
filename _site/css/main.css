@@ -116,7 +116,7 @@ header.site nav {
 header.site nav:before {
   position: absolute;
   left: -55px;
-  bottom: -20px;
+  bottom: -25px;
   content: url("../img/phones.png"); }
 header.site nav:after {
   position: absolute;
@@ -126,13 +126,21 @@ header.site nav:after {
 header.site li {
   padding: 0 4px 0 24px;
   background: url("../img/dial_seperator_middle.png") left center no-repeat;
-  float: left; }
+  float: left;
+  position: relative; }
   header.site li a {
     font-family: 'Six Caps', sans-serif;
     font-size: 34px;
     text-decoration: none;
     color: #2183AD;
     text-transform: uppercase; }
+  header.site li a.selected {
+    color: #4D4D4D; }
+  header.site li a.selected:after {
+    position: absolute;
+    top: -14px;
+    left: 38px;
+    content: url("../img/needle.png"); }
 header.site li:first-child {
   padding-left: 14px;
   background: url("../img/dial_seperator_first.png") left center no-repeat; }
