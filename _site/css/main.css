@@ -113,6 +113,16 @@ header.site nav {
   -webkit-border-image: url("../img/dial_border.png") 8 6 5 6 stretch;
   border-image: url("../img/dial_border.png") 8 6 5 6 stretch;
   background: url("../img/dial_seperator_first.png") right center no-repeat white; }
+header.site nav:before {
+  position: absolute;
+  left: -55px;
+  bottom: -20px;
+  content: url("../img/phones.png"); }
+header.site nav:after {
+  position: absolute;
+  right: -85px;
+  bottom: -25px;
+  content: url("../img/tuner.png"); }
 header.site li {
   padding: 0 4px 0 24px;
   background: url("../img/dial_seperator_middle.png") left center no-repeat;
