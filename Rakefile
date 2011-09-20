@@ -10,6 +10,21 @@ task :parse_haml do
   puts "done."
 end
 
+desc "Parse sass css"
+task :parse_sass do
+  print "Parsing Sass _includes..."
+  system(%{
+    cd _includes/sass && 
+    for f in *.scss; do [ -e $f ] && sass $f ../${f%.scss}.css; done
+  })
+  puts "done."
+end
+
+desc "Generate HAML & SASS"
+task :haml_sass do
+  Rake::Task["parse_haml"].invoke
+  Rake::Task["parse_sass"].invoke
+end
 
 desc "Create per tag pages and rest"
-task :default => [:parse_haml]
+task :default => [:haml_sass]

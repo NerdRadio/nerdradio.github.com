@@ -2,4 +2,4 @@ auto:           false
 server:         false
 safe:           true
 source:         .
-exclude:        ./Rakefile, ./Guardfile
+exclude:        ./Rakefile, ./Guardfile, *.haml, *.scss
