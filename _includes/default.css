@@ -1,2 +1,7 @@
 body {
   background: #3c3c3c; }
+
+.site .logo {
+  background: url("../img/logo.png");
+  width: 330px;
+  height: 40px; }
