@@ -34,15 +34,20 @@
         </div>
       </div>
       <div class='sub'>
-        <div id='envato_dropdown'></div>
-        <a href='#'>Subscribe</a>
-        <a href='#'>Twitter</a>
-        <form action='#' id='search_form' method='post'>
-          <input name='search' placeholder='search' type='text' />
-          <input name='submit' type='submit' value='submit' />
-        </form>
+        <div class='middle'>
+          <div id='envato_dropdown'>Part of<img alt='Envato' src='/img/envato.png' /></div>
+          <a class='rss_button' href='#'>Subscribe</a>
+          <a class='twitter_button' href='#'>Twitter</a>
+          <form action='#' id='search_form' method='post'>
+            <input name='search' placeholder='Search...' type='text' />
+            <input name='submit' type='submit' value='submit' />
+          </form>
+        </div>
+      </div>
+      <div class='middle'>
+        {{ content }}
       </div>
     </header>
-    {{ content }}
+    <footer class='site'></footer>
   </body>
 </html>

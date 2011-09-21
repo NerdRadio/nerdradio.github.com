@@ -22,10 +22,10 @@ header.site .main {
   box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.5); }
 header.site nav {
   display: inline-block;
-  height: 38px;
+  height: 34px;
   right: 82px;
-  top: 16px;
-  padding: 8px 12px 8px 0;
+  top: 25px;
+  padding: 3px 12px 3px 0;
   position: absolute;
   border-width: 8px 6px 5px 6px;
   -moz-border-image: url("../img/dial_border.png") 8 6 5 6 stretch;
@@ -35,12 +35,12 @@ header.site nav {
 header.site nav:before {
   position: absolute;
   left: -55px;
-  bottom: -25px;
+  bottom: -30px;
   content: url("../img/phones.png"); }
 header.site nav:after {
   position: absolute;
   right: -85px;
-  bottom: -25px;
+  bottom: -30px;
   content: url("../img/tuner.png"); }
 header.site li {
   padding: 0 4px 0 24px;
@@ -49,7 +49,7 @@ header.site li {
   position: relative; }
   header.site li a {
     font-family: 'Six Caps', sans-serif;
-    font-size: 34px;
+    font-size: 32px;
     text-decoration: none;
     color: #2183AD;
     text-transform: uppercase; }
@@ -57,9 +57,78 @@ header.site li {
     color: #4D4D4D; }
   header.site li a.selected:after {
     position: absolute;
-    top: -14px;
+    top: -8px;
     left: 38px;
     content: url("../img/needle.png"); }
 header.site li:first-child {
   padding-left: 14px;
   background: url("../img/dial_seperator_first.png") left center no-repeat; }
+header.site .sub {
+  height: 50px;
+  padding: 20px 0; }
+  header.site .sub #envato_dropdown {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: 'Helvetica', sans-serif;
+    position: absolute;
+    left: 20px;
+    top: 4px; }
+    header.site .sub #envato_dropdown img {
+      vertical-align: -34%;
+      margin-left: 6px; }
+  header.site .sub .rss_button {
+    display: block;
+    position: absolute;
+    left: 526px;
+    top: 0px;
+    width: 120px;
+    height: 32px;
+    background-image: url("../img/subscribe_rss_button.png");
+    background-position: top left;
+    background-repeat: no-repeat;
+    text-indent: -10000px;
+    content: none; }
+  header.site .sub .rss_button:hover, header.site .sub .twitter_button:hover {
+    background-position: bottom left; }
+  header.site .sub .twitter_button {
+    display: block;
+    width: 34px;
+    height: 32px;
+    position: absolute;
+    left: 656px;
+    top: 0px;
+    background-image: url("../img/twitter_button.png");
+    background-position: top left;
+    background-repeat: no-repeat;
+    text-indent: -10000px;
+    content: none; }
+  header.site .sub #search_form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 260px; }
+    header.site .sub #search_form input[type=text] {
+      background: #4D4D4D;
+      border: 1px solid #000;
+      height: 30px;
+      width: 180px;
+      padding: 0 10px;
+      position: absolute;
+      left: 0px;
+      top: 0px; }
+    header.site .sub #search_form input[type=submit] {
+      width: 34px;
+      height: 32px;
+      background-image: url("../img/search_button.png");
+      background-position: top left;
+      background-repeat: no-repeat;
+      text-indent: -10000px;
+      content: none;
+      border: none;
+      position: absolute;
+      left: 200px;
+      top: 0px; }
+    header.site .sub #search_form input[type=submit]:hover {
+      background-position: bottom left;
+      cursor: pointer; }
