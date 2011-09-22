@@ -12,6 +12,18 @@ $body_background: #3C3C3C;
 	
 }
 
+@font-face {
+    font-family: 'ImpactLabelRegular';
+    src: url('impact_label/impact_label-webfont.eot');
+    src: url('impact_label/impact_label-webfont.eot?#iefix') format('embedded-opentype'),
+         url('impact_label/impact_label-webfont.woff') format('woff'),
+         url('impact_label/impact_label-webfont.ttf') format('truetype'),
+         url('impact_label/impact_label-webfont.svg#ImpactLabelRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
 	background: $body_background;
 }
@@ -49,6 +61,32 @@ header.site {
 		-webkit-border-image: url('../img/dial_border.png') 8 6 5 6 stretch;
 		border-image: url('../img/dial_border.png') 8 6 5 6 stretch;
 		background: url('../img/dial_seperator_first.png') right center no-repeat #FFF;
+		li {
+			padding: 0 4px 0 24px;
+			background: url('../img/dial_seperator_middle.png') left center no-repeat;
+			float: left;
+			position: relative;
+			a {
+				font-family: 'Six Caps', sans-serif;
+				font-size: 32px;
+				text-decoration: none;
+				color: #2183AD;
+				text-transform: uppercase;
+			}
+			a.selected {
+				color: #4D4D4D;
+			}
+			a.selected:after{
+				position: absolute;
+				top: -8px;
+				left: 38px;
+				content: url('../img/needle.png');
+			}
+		}
+		li:first-child {
+			padding-left: 14px;
+			background: url('../img/dial_seperator_first.png') left center no-repeat;
+		}
 	}
 	nav:before {
 		position: absolute;
@@ -61,32 +99,6 @@ header.site {
 		right: -85px;
 		bottom: -30px;
 		content: url('../img/tuner.png');
-	}
-	li {
-		padding: 0 4px 0 24px;
-		background: url('../img/dial_seperator_middle.png') left center no-repeat;
-		float: left;
-		position: relative;
-		a {
-			font-family: 'Six Caps', sans-serif;
-			font-size: 32px;
-			text-decoration: none;
-			color: #2183AD;
-			text-transform: uppercase;
-		}
-		a.selected {
-			color: #4D4D4D;
-		}
-		a.selected:after{
-			position: absolute;
-			top: -8px;
-			left: 38px;
-			content: url('../img/needle.png');
-		}
-	}
-	li:first-child {
-		padding-left: 14px;
-		background: url('../img/dial_seperator_first.png') left center no-repeat;
 	}
 	.sub {
 		height: 50px;
@@ -165,6 +177,17 @@ header.site {
 				background-position: bottom left;
 				cursor: pointer;
 			}
+		}
+	}
+}
+article.episode {
+	padding: 25px;
+	width: 610px;
+	background: #CCC;
+	header {
+		.post_date {
+			font-family: 'ImpactLabelRegular';
+			font-size: 25px;
 		}
 	}
 }
