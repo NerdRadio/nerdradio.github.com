@@ -7,14 +7,14 @@ title: Move along, nothing to see here
 		<article class="episode">
 			<header>
 				<h2 class="post_title">{{ post.title }}</h2>
-				<div class="post_date">{{ post.date }}</div>
+				<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
 				<div class="comment_count">{{ post.comment_count }}</div>
 				<div class="guest">Guest: {{ post.guest }}</div>
 				<div class="host">Hosts: {{ post.host }}</div>
 				<div class="producer">Producer: {{ post.producer }}</div>
-				<audio class="episode_player" preload controls>
+				<audio class="episode_player" preload>
 					<source type="audio/mpeg" src="{{ post.audio_url }}"/>
-					Ah, snap. Your browser does not support HTML5 audio.
+					<a href="{{ post.audio_url }}">Download the episode</a>
 				</audio>
 			</header>
 			<div class="post_content">{{ post.content }}</div>

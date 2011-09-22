@@ -1,4 +1,5 @@
 $body_background: #3C3C3C;
+$link_color: #2183AD;
 
 @mixin corners ($radii) {
 	border-radius: $radii;
@@ -26,12 +27,24 @@ $body_background: #3C3C3C;
 
 body {
 	background: $body_background;
+	font-family: 'Helvetica', sans-serif;
+	color: #4D4D4D;
+	font-size: 14px;
 }
 
 .middle {
 	width: 960px;
 	margin: 0 auto;
 	position: relative;
+}
+
+a {
+	color: $link_color;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 header.site {
@@ -107,7 +120,6 @@ header.site {
 			color: #999;
 			text-transform: uppercase;
 			font-size: 10px;
-			font-family: 'Helvetica', sans-serif;
 			position: absolute;
 			left: 20px;
 			top: 4px;
@@ -188,6 +200,7 @@ article.episode {
 		.post_date {
 			font-family: 'ImpactLabelRegular';
 			font-size: 25px;
+			color: #000;
 		}
 	}
 }
