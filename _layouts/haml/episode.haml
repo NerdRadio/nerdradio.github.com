@@ -2,7 +2,9 @@
 	%header
 		%h2.post_title {{ post.title }}
 		.post_date {{ post.date }}
-		.comment_count {{ post.comment_count }}
+		.comment_count 
+			{{ post.comment_count }}
+			%span.label comments
 		.guest {{ post.guest }}
 		.host {{ post.host }}
 		.producer {{ post.producer }}
