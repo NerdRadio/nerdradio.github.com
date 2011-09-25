@@ -6,9 +6,13 @@ title: Move along, nothing to see here
 	{% if (post.layout == 'episode') %}
 		<article class="episode">
 			<header>
+				<div class="post_image"><img src="{{ post.image_url }}" alt="{{ post.title }}"/></div>
 				<h2 class="post_title">{{ post.title }}</h2>
 				<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
-				<div class="comment_count">{{ post.comment_count }}</div>
+				<div class="comment_count">
+					<span class="count_0">0</span><span class="count_0">0</span><span class="count_{{ post.comment_count }}">{{ post.comment_count }}</span>
+					<div>Comments</div>
+				</div>
 				<div class="guest">Guest: {{ post.guest }}</div>
 				<div class="host">Hosts: {{ post.host }}</div>
 				<div class="producer">Producer: {{ post.producer }}</div>

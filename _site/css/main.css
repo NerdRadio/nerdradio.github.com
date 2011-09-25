@@ -87,9 +87,9 @@ input, select {
   font-style: normal; }
 
 @font-face {
-  font-family: 'Counter';
-  src: url("counter/counter-webfont.eot");
-  src: url("counter/counter-webfont.eot?#iefix") format("embedded-opentype"), url("counter/counter-webfont.woff") format("woff"), url("counter/counter-webfont.ttf") format("truetype"), url("counter/counter-webfont.svg#Untitled1Medium") format("svg");
+  font-family: 'DSDigitalNormal';
+  src: url("ds-digi/ds-digi-webfont.eot");
+  src: url("ds-digi/ds-digi-webfont.eot?#iefix") format("embedded-opentype"), url("ds-digi/ds-digi-webfont.woff") format("woff"), url("ds-digi/ds-digi-webfont.ttf") format("truetype"), url("ds-digi/ds-digi-webfont.svg#DSDigitalNormal") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -238,20 +238,92 @@ header.site .sub {
       cursor: pointer; }
 
 article.episode {
-  padding: 25px;
-  width: 610px;
+  width: 660px;
   background: #CCC; }
-  article.episode header .post_title {
-    font-size: 44px;
-    text-shadow: 0 1px #FFF; }
-  article.episode header .post_date {
-    font-family: 'ImpactLabelRegular';
-    font-size: 25px;
-    color: #000; }
-  article.episode header .comment_count {
-    font-family: 'Counter', sans-serif;
-    font-size: 40px;
-    color: #000;
-    padding: 10px; }
-    article.episode header .comment_count .label {
-      font-family: 'Helvetica', sans-serif; }
+  article.episode header {
+    height: 300px;
+    position: relative; }
+    article.episode header .post_image {
+      width: 278px;
+      height: 243px;
+      position: absolute;
+      display: block;
+      left: 30px;
+      top: 30px;
+      -moz-box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, 0.12);
+      -webkit-box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, 0.12);
+      box-shadow: -1px 1px 7px 7px rgba(0, 0, 0, 0.12); }
+      article.episode header .post_image img {
+        width: 236px;
+        height: 236px;
+        position: absolute;
+        left: 35px;
+        top: 4px; }
+    article.episode header .post_image:after {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: url("../img/jewel_case.png");
+      width: 278px;
+      height: 243px; }
+    article.episode header .post_title {
+      width: 310px;
+      position: absolute;
+      left: 336px;
+      top: 33px;
+      font-size: 44px;
+      text-shadow: 0 1px #FFF; }
+    article.episode header .post_date {
+      font-family: 'ImpactLabelRegular';
+      font-size: 25px;
+      color: #000;
+      position: absolute;
+      left: 357px;
+      top: 132px; }
+    article.episode header .comment_count {
+      background: #000;
+      padding: 0 1px;
+      display: inline-block;
+      height: 34px;
+      width: 62px;
+      position: absolute;
+      left: 565px;
+      top: 130px;
+      -moz-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+      -webkit-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+      box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.8); }
+      article.episode header .comment_count span {
+        display: inline-block;
+        width: 20px;
+        height: 34px;
+        background-image: url("../img/counter_numbers.png");
+        background-repeat: no-repeat;
+        text-indent: -10000px; }
+      article.episode header .comment_count .count_0 {
+        background-position: left -306px; }
+      article.episode header .comment_count .count_1 {
+        background-position: left 0px; }
+      article.episode header .comment_count .count_2 {
+        background-position: left -34px; }
+      article.episode header .comment_count .count_3 {
+        background-position: left -68px; }
+      article.episode header .comment_count .count_4 {
+        background-position: left -102px; }
+      article.episode header .comment_count .count_5 {
+        background-position: left -136px; }
+      article.episode header .comment_count .count_6 {
+        background-position: left -170px; }
+      article.episode header .comment_count .count_7 {
+        background-position: left -204px; }
+      article.episode header .comment_count .count_8 {
+        background-position: left -238px; }
+      article.episode header .comment_count .count_9 {
+        background-position: left -272px; }
+      article.episode header .comment_count div {
+        width: 62px;
+        height: 18px;
+        background: url("../img/comments_label.png") no-repeat;
+        position: absolute;
+        bottom: -18px;
+        text-indent: -10000px; }
