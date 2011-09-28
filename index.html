@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Move along, nothing to see here
+title: Home
 ---
 {% for post in site.posts %}
 	{% if (post.layout == 'episode') %}
@@ -16,12 +16,16 @@ title: Move along, nothing to see here
 				<div class="guest">Guest: {{ post.guest }}</div>
 				<div class="host">Hosts: {{ post.host }}</div>
 				<div class="producer">Producer: {{ post.producer }}</div>
-				<audio class="episode_player" preload>
-					<source type="audio/mpeg" src="{{ post.audio_url }}"/>
-					<a href="{{ post.audio_url }}">Download the episode</a>
-				</audio>
+				<div class="audio">
+					<a class="pause">Pause</a>
+					<a class="play">Play</a>
+					<audio class="episode_player" preload>
+						<source type="audio/mpeg" src="{{ post.audio_url }}"/>
+						<a href="{{ post.audio_url }}">Download the episode</a>
+					</audio>
+				</div>
 			</header>
-			<div class="post_content">{{ post.content }}</div>
+			<div class="post_content">{{ post.content }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>
 		</article>
 	{% endif %}
 {% endfor %}

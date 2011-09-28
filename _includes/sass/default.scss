@@ -205,17 +205,24 @@ header.site {
 }
 article.episode {
 	width: 660px;
-	background: #CCC;
+	background: #E6E6E6;
+	margin-bottom: 40px;
+	@include dropshadow(0px 1px 4px 3px rgba(0,0,0,0.2));
 	header {
-		height: 300px;
+		width: 305px;
+		padding: 30px 25px 15px 330px;
+		height: 250px;
 		position: relative;
+		background: #CCC;
+		border-bottom: 1px solid #B3B3B3;
+		font-size: 12px;
 		.post_image {
 			width: 278px;
 			height: 243px;
 			position: absolute;
 			display: block;
 			left: 30px;
-			top: 30px;
+			top: 25px;
 			@include dropshadow(-1px 1px 7px 7px rgba(0,0,0,0.12));
 			img {
 				width: 236px;
@@ -235,10 +242,6 @@ article.episode {
 			height: 243px;
 		}
 		.post_title {
-			width: 310px;
-			position: absolute;
-			left: 336px;
-			top: 33px;
 			font-size: 44px;
 			text-shadow: 0 1px #FFF;
 		}
@@ -246,9 +249,8 @@ article.episode {
 			font-family: 'ImpactLabelRegular';
 			font-size: 25px;
 			color: #000;
-			position: absolute;
-			left: 357px;
-			top: 132px;
+			float: left;
+			margin: 14px 0 20px 20px;
 		}
 		.comment_count {
 			background: #000;
@@ -256,9 +258,9 @@ article.episode {
 			display: inline-block;
 			height: 34px;
 			width: 62px;
-			position: absolute;
-			left: 565px;
-			top: 130px;
+			position: relative;
+			float: right;
+			margin-top: 10px;
 			@include dropshadow(0px 1px 0px 0px rgba(255,255,255,0.8));
 			span {
 				display: inline-block;
@@ -306,6 +308,72 @@ article.episode {
 				bottom: -18px;
 				text-indent: -10000px;
 			}
+		}
+		.guest, .host, .producer {
+			clear: both;
+			margin-bottom: 3px;
+		}
+		.audio {
+			width: 295px;
+			height: 57px;
+			background: url('../img/digital_background.png') no-repeat;
+			position: absolute;
+			bottom: 15px;
+			right: 30px;
+			.pause, .play {
+				position: absolute;
+				display: block;
+				background-repeat: no-repeat;
+				background-position: center top;
+				height: 55px;
+				text-indent: -10000px;
+			}
+			.pause:hover, .play:hover {
+				background-position: center bottom;
+			}
+			.pause.on, .play.on {
+				background-position: center;
+			}
+			.pause {
+				top: 0px;
+				left: 4px;
+				width: 69px;
+				background-image: url('../img/pause_button.png');
+			}
+			.play {
+				top: 0px;
+				left: 73px;
+				width: 85px;
+				background-image: url('../img/play_button.png');
+			}
+		}
+		.audio:after {
+			position: absolute;
+			content: url('../img/digital_screen.png') no-repeat;
+			width: 130px;
+			height: 48px;
+			right: 6px;
+			top: 3px;
+		}
+	}
+	.post_content {
+		padding: 15px 180px 30px 30px;
+		position: relative;
+		min-height: 30px;
+		a.read_more {
+			display: block;
+			width: 170px;
+			height: 61px;
+			text-indent: -10000px;
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			background-image: url('../img/full_post_button.png');
+			background-repeat: no-repeat;
+			background-position: center bottom;
+		}
+		a.read_more:hover {
+			background-position: center top;
 		}
 	}
 }
