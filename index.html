@@ -19,6 +19,10 @@ title: Home
 				<div class="audio">
 					<a class="pause">Pause</a>
 					<a class="play">Play</a>
+					<div class="data">
+						<div class="playhead">00:00</div>
+						<div class="total_time">{{ post.total_time }}</div>
+					</div>
 					<audio class="episode_player" preload>
 						<source type="audio/mpeg" src="{{ post.audio_url }}"/>
 						<a href="{{ post.audio_url }}">Download the episode</a>
