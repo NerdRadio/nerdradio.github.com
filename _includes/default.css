@@ -23,6 +23,9 @@ body {
   margin: 0 auto;
   position: relative; }
 
+.disabled {
+  display: none; }
+
 a {
   color: #2183ad;
   text-decoration: none; }
@@ -266,7 +269,8 @@ article.episode {
         background-repeat: no-repeat;
         background-position: center top;
         height: 55px;
-        text-indent: -10000px; }
+        text-indent: -10000px;
+        cursor: pointer; }
       article.episode header .audio .pause.on, article.episode header .audio .play.on {
         background-position: center; }
       article.episode header .audio .pause:hover, article.episode header .audio .play:hover {
@@ -296,12 +300,35 @@ article.episode {
           position: absolute;
           font-size: 21px;
           left: 16px;
-          top: 8px; }
+          top: 6px; }
         article.episode header .audio .data .total_time {
           position: absolute;
           font-size: 14px;
-          right: 14px;
-          top: 14px; }
+          right: 15px;
+          top: 12px; }
+        article.episode header .audio .data .volume {
+          display: block;
+          width: 100px;
+          height: 12px;
+          text-indent: -10000px;
+          background: url("../img/digital_vol.png") repeat-x left top;
+          position: absolute;
+          bottom: 7px;
+          left: 16px;
+          cursor: pointer; }
+    article.episode header .audio_download a {
+      background-image: url("../img/download_button.png");
+      background-position: bottom;
+      background-repeat: no-repeat;
+      display: block;
+      width: 160px;
+      height: 60px;
+      position: absolute;
+      bottom: 10px;
+      left: 305;
+      text-indent: -10000px; }
+    article.episode header .audio_download a:hover {
+      background-position: top; }
   article.episode .post_content {
     padding: 15px 180px 30px 30px;
     position: relative;

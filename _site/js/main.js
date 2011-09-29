@@ -23,32 +23,52 @@ function timeString (time) {
 
 
 $(document).ready(function() {
-	$('.episode audio').each(function(index){
-		$(this).bind('durationchange', function(){
-			var totalTime = timeString($(this)[0].duration);
-			$($($(this)[0]).siblings('.data')).children('.total_time').html(totalTime);
-		});
-		$(this).bind('timeupdate', function(){
-			var currentTime = timeString(this.currentTime);
-			$($($(this)[0]).siblings('.data')).children('.playhead').html(currentTime);
-		});
-		$(this).bind('play', function(){
-			$($($(this)[0]).siblings('.play')).addClass('on');
-			$($($(this)[0]).siblings('.pause')).removeClass('on');
-		});
-		$(this).bind('pause', function(){
-			$($($(this)[0]).siblings('.pause')).addClass('on');
-			$($($(this)[0]).siblings('.play')).removeClass('on');
-		});
-		$(this).bind('ended', function(){
-			$($($(this)[0]).siblings('.pause')).removeClass('on');
-			$($($(this)[0]).siblings('.play')).removeClass('on');
-		});
+	$('.comment_count').each(function(index){
+		var count = PadDigits(parseInt($(this).text()), 3);
+		var count_array = count.split('');
+		var output = '';
+		for (var i=0; i < count_array.length; i++) {
+			output += '<span class="count_'+count_array[i]+'">'+count_array[i]+'</span>';
+		}
+		$(this).html(output);
+		console.log(output);
 	});
-	$('.episode .pause').click(function() {
-		$(this).siblings('audio')[0].pause();
-	});
-	$('.episode .play').click(function() {
-		$(this).siblings('audio')[0].play();
-	});
+	if (Modernizr.audio.mp3 == false) {
+		$('.episode .audio').addClass('disabled');
+		$('.episode .audio_download').removeClass('disabled');
+	} else {
+		$('.episode audio').each(function(index){
+			$(this).bind('durationchange', function(){
+				var totalTime = timeString($(this)[0].duration);
+				$($($(this)[0]).siblings('.data')).children('.total_time').html(totalTime);
+			});
+			$(this).bind('timeupdate', function(){
+				var currentTime = timeString(this.currentTime);
+				$($($(this)[0]).siblings('.data')).children('.playhead').html(currentTime);
+			});
+			$(this).bind('play', function(){
+				$($($(this)[0]).siblings('.play')).addClass('on');
+				$($($(this)[0]).siblings('.pause')).removeClass('on');
+			});
+			$(this).bind('pause', function(){
+				$($($(this)[0]).siblings('.pause')).addClass('on');
+				$($($(this)[0]).siblings('.play')).removeClass('on');
+			});
+			$(this).bind('ended', function(){
+				$($($(this)[0]).siblings('.pause')).removeClass('on');
+				$($($(this)[0]).siblings('.play')).removeClass('on');
+			});
+		});
+		$('.episode .volume').each(function(index){
+			$(this).click(function(e){
+				console.log(e.pageX);
+			});
+		});
+		$('.episode .pause').click(function() {
+			$(this).siblings('audio')[0].pause();
+		});
+		$('.episode .play').click(function() {
+			$(this).siblings('audio')[0].play();
+		});
+	}
 });

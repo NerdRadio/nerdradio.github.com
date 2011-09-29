@@ -48,7 +48,9 @@ body {
 	margin: 0 auto;
 	position: relative;
 }
-
+.disabled {
+	display: none;
+}
 a {
 	color: $link_color;
 	text-decoration: none;
@@ -327,6 +329,7 @@ article.episode {
 				background-position: center top;
 				height: 55px;
 				text-indent: -10000px;
+				cursor: pointer;
 			}
 			.pause.on, .play.on {
 				background-position: center;
@@ -361,15 +364,41 @@ article.episode {
 					position: absolute;
 					font-size: 21px;
 					left: 16px;
-					top: 8px;
+					top: 6px;
 				}
 				.total_time {
 					position: absolute;
 					font-size: 14px;
-					right: 14px;
-					top: 14px;
+					right: 15px;
+					top: 12px;
+				}
+				.volume {
+					display: block;
+					width: 100px;
+					height: 12px;
+					text-indent: -10000px;
+					background: url('../img/digital_vol.png') repeat-x left top;
+					position: absolute;
+					bottom: 7px;
+					left: 16px;
+					cursor: pointer;
 				}
 			}
+		}
+		.audio_download a {
+			background-image: url('../img/download_button.png');
+			background-position: bottom;
+			background-repeat: no-repeat;
+			display: block;
+			width: 160px;
+			height: 60px;
+			position: absolute;
+			bottom: 10px;
+			left: 305;
+			text-indent: -10000px;
+		}
+		.audio_download a:hover {
+			background-position: top;
 		}
 	}
 	.post_content {

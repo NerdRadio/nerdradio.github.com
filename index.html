@@ -10,8 +10,7 @@ title: Home
 				<h2 class="post_title">{{ post.title }}</h2>
 				<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
 				<div class="comment_count">
-					<span class="count_0">0</span><span class="count_0">0</span><span class="count_{{ post.comment_count }}">{{ post.comment_count }}</span>
-					<div>Comments</div>
+					{{ post.comment_count }}
 				</div>
 				<div class="guest">Guest: {{ post.guest }}</div>
 				<div class="host">Hosts: {{ post.host }}</div>
@@ -22,11 +21,14 @@ title: Home
 					<div class="data">
 						<div class="playhead">00:00</div>
 						<div class="total_time">88:88</div>
+						<div class="volume">100%</div>
 					</div>
 					<audio class="episode_player" preload="preload">
 						<source type="audio/mpeg" src="{{ post.audio_url }}"/>
-						<a href="{{ post.audio_url }}">Download the episode</a>
 					</audio>
+				</div>
+				<div class="audio_download disabled">
+					<a href="{{ post.audio_url }}">Download the episode</a>
 				</div>
 			</header>
 			<div class="post_content">{{ post.content }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>
