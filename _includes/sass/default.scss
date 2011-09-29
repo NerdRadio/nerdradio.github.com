@@ -245,21 +245,28 @@ article.episode {
 		}
 		.post_title {
 			font-size: 44px;
-			text-shadow: 0 1px #FFF;
+			text-shadow: 0 1px rgba(255,255,255,0.7);
 		}
 		.post_date {
 			font-family: 'ImpactLabelRegular';
 			font-size: 25px;
 			color: #000;
 			float: left;
-			margin: 14px 0 20px 20px;
+			margin: 14px 0 16px 20px;
+			position: relative;
+		}
+		.post_date:before {
+			position: absolute;
+			content: url('../img/date_label_shadow.png');
+			bottom: -11px;
+			left: -6px;
 		}
 		.comment_count a{
 			background: #000;
 			padding: 0 1px;
 			display: inline-block;
 			height: 34px;
-			width: 62px;
+			width: 60px;
 			position: relative;
 			float: right;
 			margin-top: 10px;
@@ -302,18 +309,20 @@ article.episode {
 			.count_9 {
 				background-position: left -272px;
 			}
-			div {
-				width: 62px;
-				height: 18px;
-				background: url('../img/comments_label.png') no-repeat;
-				position: absolute;
-				bottom: -18px;
-				text-indent: -10000px;
-			}
+		}
+		.comment_count a:after {
+			width: 62px;
+			height: 18px;
+			content: url('../img/comments_label.png');
+			position: absolute;
+			display: block;
+			bottom: -18px;
 		}
 		.guest, .host, .producer {
 			clear: both;
-			margin-bottom: 3px;
+			margin: 0 0 2px 5px;
+			text-shadow: 0 1px rgba(255,255,255,0.6);
+			font-size: 12px;
 		}
 		.audio {
 			width: 295px;

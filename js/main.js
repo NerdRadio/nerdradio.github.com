@@ -33,7 +33,6 @@ $(document).ready(function() {
 			output += '<span class="count_'+count_array[i]+'">'+count_array[i]+'</span>';
 		}
 		$(this).html(output);
-		console.log(output);
 	});
 	if (Modernizr.audio.mp3 == false) {
 		$('.episode .audio').addClass('disabled');
