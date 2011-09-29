@@ -10,7 +10,9 @@ title: Home
 				<h2 class="post_title">{{ post.title }}</h2>
 				<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
 				<div class="comment_count">
-					{{ post.comment_count }}
+					<a href="{{ post.url }}#comments">
+						{{ post.comment_count }}
+					</a>
 				</div>
 				<div class="guest">Guest: {{ post.guest }}</div>
 				<div class="host">Hosts: {{ post.host }}</div>

@@ -25,7 +25,7 @@ function timeString (time) {
 
 
 $(document).ready(function() {
-	$('.comment_count').each(function(index){
+	$('.comment_count a').each(function(index){
 		var count = PadDigits(parseInt($(this).text()), 3);
 		var count_array = count.split('');
 		var output = '';
