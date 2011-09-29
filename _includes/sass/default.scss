@@ -328,11 +328,11 @@ article.episode {
 				height: 55px;
 				text-indent: -10000px;
 			}
-			.pause:hover, .play:hover {
-				background-position: center bottom;
-			}
 			.pause.on, .play.on {
 				background-position: center;
+			}
+			.pause:hover, .play:hover {
+				background-position: center bottom;
 			}
 			.pause {
 				top: 0px;
@@ -346,14 +346,30 @@ article.episode {
 				width: 85px;
 				background-image: url('../img/play_button.png');
 			}
-		}
-		.audio:after {
-			position: absolute;
-			content: url('../img/digital_screen.png') no-repeat;
-			width: 130px;
-			height: 48px;
-			right: 6px;
-			top: 3px;
+			.data {
+				position: absolute;
+				background: url('../img/digital_screen.png') no-repeat;
+				width: 130px;
+				height: 48px;
+				right: 6px;
+				top: 3px;
+				font-family: 'DSDigitalNormal';
+				color: #2183AD;
+				font-weight: normal;
+				text-shadow: rgba(81,229,244,0.9) 0 0 2px;
+				.playhead {
+					position: absolute;
+					font-size: 21px;
+					left: 16px;
+					top: 8px;
+				}
+				.total_time {
+					position: absolute;
+					font-size: 14px;
+					right: 14px;
+					top: 14px;
+				}
+			}
 		}
 	}
 	.post_content {

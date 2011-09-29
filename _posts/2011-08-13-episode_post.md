@@ -7,6 +7,6 @@ host: <a href='http://www.twitter.com/garthdb'>Garth Braithwaite</a> and <a href
 producer: <a href='http://www.twitter.com/artienorman'>Brad Feuerstein</a>
 audio_url: http://traffic.libsyn.com/riaradio/35_Episode_35__Ben_and_Burman.m4a.mp3
 image_url: /img/posts/comb_over_charlie.jpg
-total_time: 62:23
+total_time: "62:23"
 ---
 This is a test.
