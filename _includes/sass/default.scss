@@ -386,10 +386,29 @@ article.episode {
 					width: 100px;
 					height: 12px;
 					text-indent: -10000px;
-					background: url('../img/digital_vol.png') repeat-x left top;
 					position: absolute;
 					bottom: 7px;
 					left: 16px;
+					cursor: pointer;
+				}
+				.volume .left {
+					display: block;
+					width: 99px;
+					height: 12px;
+					background: url('../img/digital_vol.png') repeat-x left top;
+					position: absolute;
+					left: 0;
+					top: 0;
+					cursor: pointer;
+				}
+				.volume .right {
+					display: block;
+					width: 1px;
+					height: 12px;
+					background: url('../img/digital_vol.png') repeat-x right bottom;
+					position: absolute;
+					right: 0;
+					top: 0;
 					cursor: pointer;
 				}
 			}

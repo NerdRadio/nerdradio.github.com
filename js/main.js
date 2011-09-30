@@ -21,9 +21,6 @@ function timeString (time) {
 	var timeString = min + ":" + sec;
 	return timeString;
 }
-
-
-
 $(document).ready(function() {
 	$('.comment_count a').each(function(index){
 		var count = PadDigits(parseInt($(this).text()), 3);
@@ -62,7 +59,13 @@ $(document).ready(function() {
 		});
 		$('.episode .volume').each(function(index){
 			$(this).click(function(e){
-				console.log(e.pageX);
+				var offset = $(this).offset();
+				var clickPosition = e.pageX - offset.left + 1;
+				var audio = $(this).parent().siblings('audio')[0];
+				audio.volume = clickPosition/100;
+				$(this).children('.left').css('width', clickPosition);
+				$(this).children('.right').css('width', 100 - clickPosition);
+				
 			});
 		});
 		$('.episode .pause').click(function() {
