@@ -3,40 +3,72 @@ layout: default
 title: Home
 ---
 {% for post in site.posts %}
-	{% if post.layout == 'episode' %}
-		<article class="episode">
-			<header>
-				<div class="post_image"><img src="{{ post.image_url }}" alt="{{ post.title }}"/></div>
-				<h2 class="post_title">{{ post.title }}</h2>
-				<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
-				<div class="comment_count">
-					<a href="{{ post.url }}#comments">
-						{{ post.comment_count }}
-					</a>
-				</div>
-				<div class="guest">Guest: {{ post.guest }}</div>
-				<div class="host">Hosts: {{ post.host }}</div>
-				<div class="producer">Producer: {{ post.producer }}</div>
-				<div class="audio">
-					<a class="pause">Pause</a>
-					<a class="play">Play</a>
-					<div class="data">
-						<div class="playhead">00:00</div>
-						<div class="total_time">88:88</div>
-						<div class="volume">100%
-							<span class="left"></span>
-							<span class="right"></span>
-						</div>
+	{% case post.category %} 
+		{% when 'episode' %}
+			<article class="episode">
+				<header>
+					<div class="post_image"><img src="{{ post.image_url }}" alt="{{ post.title }}"/></div>
+					<h2 class="post_title">{{ post.title }}</h2>
+					<div class="post_date">&nbsp;{{ post.date | date_to_string }}</div>
+					<div class="comment_count">
+						<a href="{{ post.url }}#comments">
+							{{ post.comment_count }}
+						</a>
 					</div>
-					<audio class="episode_player" preload="preload">
-						<source type="audio/mpeg" src="{{ post.audio_url }}"/>
-					</audio>
+					<div class="guest">Guest: {{ post.guest }}</div>
+					<div class="host">Hosts: {{ post.host }}</div>
+					<div class="producer">Producer: {{ post.producer }}</div>
+					<div class="audio">
+						<a href="#" class="pause">Pause</a>
+						<a href="#" class="play">Play</a>
+						<div class="data">
+							<div class="playhead">00:00</div>
+							<div class="total_time">88:88</div>
+							<div class="volume">100%
+								<span class="left"></span>
+								<span class="right"></span>
+							</div>
+						</div>
+						<audio class="episode_player" preload="preload">
+							<source type="audio/mpeg" src="{{ post.audio_url }}"/>
+						</audio>
+					</div>
+					<div class="audio_download disabled">
+						<a href="{{ post.audio_url }}">Download the episode</a>
+					</div>
+				</header>
+				<div class="post_content">{{ post.excerpt }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>
+			</article>
+		{% when 'event' %}
+			<article class="event">
+				<header>
+					<div class="post_image"><img src="{{ post.image_url }}" alt="{{ post.title }}"/></div>
+					<h2 class="post_title">{{ post.title }}</h2>
+					<div class="comment_count">
+						<a href="{{ post.url }}#comments">
+							{{ post.comment_count }}
+						</a>
+					</div>
+				</header>
+				<div class="guests">
+					{% for guest in post.guests %}
+					<div class="guest">
+						<span class="duration">0m</span>
+						<span class="date">{{ guest.date | date_to_string }}</date>
+						<span class="name"><a href="{{ guest.url }}">{{ guest.name }}</a></span>
+						<span class="player">
+							<a href="#">Play</a>
+							<audio class="event_player" preload="preload">
+								<source type="audio/mpeg" src="{{ guest.audio_url }}">
+							</audio>
+						</span>
+					</div>
+					{% endfor %}
 				</div>
-				<div class="audio_download disabled">
-					<a href="{{ post.audio_url }}">Download the episode</a>
-				</div>
-			</header>
-			<div class="post_content">{{ post.content }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>
-		</article>
-	{% endif %}
+				<div class="gallery {{ post.flickr_tag }}"></div>
+				<div class="post_content">{{ post.excerpt }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>
+			</article>
+		{% else %}
+			{{ post.category }}
+	{% endcase %}
 {% endfor %}

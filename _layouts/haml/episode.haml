@@ -1,11 +1,56 @@
+= "---"
+layout: default
+= "---"
 %article.episode
 	%header
-		%h2.post_title {{ post.title }}
-		.post_date {{ post.date }}
+		.post_image
+			%img{:src => "{{ page.image_url }}", :alt => "{{ page.title }}"}
+		%h2.post_title {{ page.title }}
+		.post_date &nbsp;{{ page.date | date_to_string }}
 		.comment_count
-			00{{ post.comment_count }}
-		.guest {{ post.guest }}
-		.host {{ post.host }}
-		.producer {{ post.producer }}
-	.post_content	
-		{{ post.content }}
+			%a{:href => "#comments" } {{ page.comment_count }}		
+		.guest {{ page.guest }}
+		.host {{ page.host }}
+		.producer {{ page.producer }}
+		.audio
+			%a.pause{:href=>'#'} Pause
+			%a.play{:href=>'#'} Play
+			.data
+				.playhead 00:00
+				.total_time 88:88
+				.volume
+					100%
+					%span.left
+					%span.right
+			%audio.episode_player{:preload => "preload"}
+				%source{:type => "audio/mpeg", :src => "{{ page.audio_url }}"}
+		.audio_download.disabled
+			%a{:href=>"{{ page.audio_url }}"} Download the episode
+	.post_content {{ page.excerpt }}
+#disqus_thread
+	:javascript
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'nerdradio'; // required: replace example with your forum shortname
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	%noscript
+		Please enable JavaScript to view the 
+		%a{:href => "http://disqus.com/?ref_noscript"}comments powered by Disqus.
+	%a.dsq-brlink{:href => "http://disqus.com"}
+		blog comments powered by 
+		%span.logo-disqus Disqus
+#disqus_count
+	:javascript
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'nerdradio'; // required: replace example with your forum shortname
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function () {
+			var s = document.createElement('script'); s.async = true;
+			s.type = 'text/javascript';
+			s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+			(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());

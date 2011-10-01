@@ -452,3 +452,6 @@ article.episode {
       background-position: center bottom; }
     article.episode .post_content a.read_more:hover {
       background-position: center top; }
+
+article.event .gallery {
+  height: 95px; }

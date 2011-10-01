@@ -31,6 +31,23 @@ $(document).ready(function() {
 		}
 		$(this).html(output);
 	});
+	
+	$('.event .gallery').each(function(index, element){
+		var tag = element.className.replace('gallery ', '');
+			$.getJSON("http://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&api_key=6257067082ef0f57f33b02078933cbd4&group_id=1765938%40N20&tags="+tag+"&format=json&nojsoncallback=1&auth_token=72157627794972550-3dd89d4092723266&api_sig=9dad58e3e17045a3705a63ec1fb2b274", function(data){
+			var imgs = '';
+			$.each(data.photos.photo, function(i, photo){
+				var imageUrl = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_s.jpg";
+				var linkUrl = "http://www.flickr.com/photos/garthdb/"+photo.id+"/in/pool-1765938@N20/";
+				var imgString = '<a href="'+linkUrl+'"><img src="'+imageUrl+'" alt="'+photo.title+'"/></a>';
+				imgs += imgString;
+			});
+			$(element).html(imgs);
+			console.log(element);
+		});
+	});
+	
+	
 	if (Modernizr.audio.mp3 == false) {
 		$('.episode .audio').addClass('disabled');
 		$('.episode .audio_download').removeClass('disabled');

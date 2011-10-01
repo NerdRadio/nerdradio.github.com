@@ -1,15 +1,75 @@
+---
+layout: default
+---
 <article class='episode'>
   <header>
-    <h2 class='post_title'>{{ post.title }}</h2>
-    <div class='post_date'>{{ post.date }}</div>
-    <div class='comment_count'>
-      00{{ post.comment_count }}
+    <div class='post_image'>
+      <img alt='{{ page.title }}' src='{{ page.image_url }}' />
     </div>
-    <div class='guest'>{{ post.guest }}</div>
-    <div class='host'>{{ post.host }}</div>
-    <div class='producer'>{{ post.producer }}</div>
+    <h2 class='post_title'>{{ page.title }}</h2>
+    <div class='post_date'>&nbsp;{{ page.date | date_to_string }}</div>
+    <div class='comment_count'>
+      <a href='#comments'>{{ page.comment_count }}</a>
+    </div>
+    <div class='guest'>{{ page.guest }}</div>
+    <div class='host'>{{ page.host }}</div>
+    <div class='producer'>{{ page.producer }}</div>
+    <div class='audio'>
+      <a class='pause' href='#'>Pause</a>
+      <a class='play' href='#'>Play</a>
+      <div class='data'>
+        <div class='playhead'>00:00</div>
+        <div class='total_time'>88:88</div>
+        <div class='volume'>
+          100%
+          <span class='left'></span>
+          <span class='right'></span>
+        </div>
+      </div>
+      <audio class='episode_player' preload='preload'>
+        <source src='{{ page.audio_url }}' type='audio/mpeg'></source>
+      </audio>
+    </div>
+    <div class='audio_download disabled'>
+      <a href='{{ page.audio_url }}'>Download the episode</a>
+    </div>
   </header>
-  <div class='post_content'>
-    {{ post.content }}
-  </div>
+  <div class='post_content'>{{ page.excerpt }}</div>
 </article>
+<div id='disqus_thread'>
+  <script type='text/javascript'>
+    //<![CDATA[
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'nerdradio'; // required: replace example with your forum shortname
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+      	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      	dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    //]]>
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+  </noscript>
+  <a class='dsq-brlink' href='http://disqus.com'>
+    blog comments powered by
+    <span class='logo-disqus'>Disqus</span>
+  </a>
+</div>
+<div id='disqus_count'>
+  <script type='text/javascript'>
+    //<![CDATA[
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'nerdradio'; // required: replace example with your forum shortname
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+      	var s = document.createElement('script'); s.async = true;
+      	s.type = 'text/javascript';
+      	s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      	(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    //]]>
+  </script>
+</div>

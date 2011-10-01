@@ -4,3 +4,4 @@ server_port:    4000
 safe:           true
 source:         .
 exclude:        ./Rakefile, ./Guardfile, ./Gemfile, ./Gemfile.lock
+permalink:      none
