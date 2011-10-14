@@ -36,6 +36,18 @@ $link_color: #2183AD;
 
 }
 
+@font-face {
+    font-family: 'GTGFattie';
+    src: url('gtg/gtg-webfont.eot');
+    src: url('gtg/gtg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('gtg/gtg-webfont.woff') format('woff'),
+         url('gtg/gtg-webfont.ttf') format('truetype'),
+         url('gtg/gtg-webfont.svg#GTGFattie') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
 	background: $body_background;
 	font-family: 'Helvetica', sans-serif;
@@ -205,6 +217,22 @@ header.site {
 		}
 	}
 }
+
+article {
+	a.read_more {
+		display: block;
+		width: 170px;
+		height: 61px;
+		text-indent: -10000px;
+		background-image: url('../img/full_post_button.png');
+		background-repeat: no-repeat;
+		background-position: center bottom;
+	}
+	a.read_more:hover {
+		background-position: center top;
+	}
+}
+
 article.episode {
 	width: 660px;
 	background: #E6E6E6;
@@ -434,23 +462,92 @@ article.episode {
 		position: relative;
 		min-height: 30px;
 		a.read_more {
-			display: block;
-			width: 170px;
-			height: 61px;
-			text-indent: -10000px;
 			position: absolute;
 			right: 10px;
 			bottom: 10px;
-			background-image: url('../img/full_post_button.png');
-			background-repeat: no-repeat;
-			background-position: center bottom;
-		}
-		a.read_more:hover {
-			background-position: center top;
 		}
 	}
 }
 article.event {
+	width: 620px;
+	background: #F2F2F2 url('../img/white_board_texture.png') left top no-repeat;
+	display: block;
+	position: relative;
+	min-height: 460px;
+	header {
+		.post_image {
+			position: absolute;
+			left: -5px;
+			top: 238px;
+		}
+		h2 {
+			font-family: 'GTGFattie';
+			font-size: 44px;
+			color: #333;
+			padding: 38px 0 25px 160px;
+			
+		}
+		.post_image:before {
+			position: absolute;
+			display: block;
+			width: 192px;
+			height: 211px;
+			left: -14px;
+			top: -238px;
+			content: url('../img/lanyard_back.png');
+		}
+		.post_image:after {
+			position: absolute;
+			display: block;
+			width: 203px;
+			height: 440px;
+			top: -246px;
+			left: -11px;
+			content: url('../img/lanyard_front.png');
+		}
+		.comment_count {
+			position: absolute;
+			left: 46px;
+			top: 480px;
+			width: 80px;
+			height: 40px;
+			font-family: 'GTGFattie';
+			font-size: 36px;
+			a {
+				color: #000;
+				text-decoration: none;
+			}
+		}
+	}
+	.guests {
+		width: 450px;
+		min-height: 400px;
+		background: #FFF;
+		@include dropshadow(1px 1px 1px 1px rgba(0,0,0,0.3));
+		position: relative;
+		left: 215px;
+		padding: 0 0 20px 0;
+		h3 {
+			font-weight: bold;
+			font-size: 20px;
+			padding: 24px 0 15px 30px;
+		}
+		table {
+			font-family: courier, sans-serif;
+			border: 1px solid #000;
+			width: 400px;
+			margin: 0 0 0 20px;
+			td {
+				border: 1px solid #000;
+				padding: 3px 2px 2px 8px;
+				height: 23px;
+				min-width: 30px;
+				.player {
+					float: right;
+				}
+			}
+		}
+	}
 	.gallery {
 		height: 95px;
 	}

@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 {% for post in site.posts %}
-	{% case post.category %} 
+	{% case post.category %}
 		{% when 'episode' %}
 			<article class="episode">
 				<header>
@@ -51,19 +51,27 @@ title: Home
 					</div>
 				</header>
 				<div class="guests">
-					{% for guest in post.guests %}
-					<div class="guest">
-						<span class="duration">0m</span>
-						<span class="date">{{ guest.date | date_to_string }}</date>
-						<span class="name"><a href="{{ guest.url }}">{{ guest.name }}</a></span>
-						<span class="player">
-							<a href="#">Play</a>
-							<audio class="event_player" preload="preload">
-								<source type="audio/mpeg" src="{{ guest.audio_url }}">
-							</audio>
-						</span>
-					</div>
+					<h3>Guest List</h3>
+					<table>
+					{% for interview in post.interviews %}
+						<tr>
+							<td class="duration">0m</td>
+							<td class="date">{{ interview.date | date: "%a" }}</td>
+							<td class="name">
+								{% if interview.title %}
+								<strong>{{ interview.title }}</strong> with 
+								{% endif %}
+								{% for guest in interview.guests %}
+								<a href="{{ guest.url }}">{{ guest.name }}</a>{% if forloop.length != forloop.index %},{% endif %}
+								{% endfor %}
+								<a href="#" class="player">Play</a>
+								<audio class="event_player" preload="preload">
+									<source type="audio/mpeg" src="{{ interview.audio_url }}">
+								</audio>
+							</td>
+						</tr>
 					{% endfor %}
+					</table>
 				</div>
 				<div class="gallery {{ post.flickr_tag }}"></div>
 				<div class="post_content">{{ post.excerpt }}<a class="read_more" href="{{ post.url }}">Full Post</a></div>

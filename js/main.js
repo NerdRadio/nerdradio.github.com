@@ -43,7 +43,6 @@ $(document).ready(function() {
 				imgs += imgString;
 			});
 			$(element).html(imgs);
-			console.log(element);
 		});
 	});
 	
