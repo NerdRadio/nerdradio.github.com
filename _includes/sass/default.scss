@@ -474,6 +474,7 @@ article.event {
 	display: block;
 	position: relative;
 	min-height: 460px;
+	margin-bottom: 40px;
 	header {
 		.post_image {
 			position: absolute;
@@ -484,7 +485,7 @@ article.event {
 			font-family: 'GTGFattie';
 			font-size: 44px;
 			color: #333;
-			padding: 38px 0 25px 160px;
+			padding: 38px 20px 25px 160px;
 			
 		}
 		.post_image:before {
