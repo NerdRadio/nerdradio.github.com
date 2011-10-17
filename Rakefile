@@ -20,10 +20,20 @@ task :parse_sass do
   puts "done."
 end
 
+desc "Parse coffee"
+task :parse_coffee do
+  print "Parsing Coffee files..."
+  system(%{
+    coffee -o js/ -c _coffee/
+  })
+  puts "done."
+end
+
 desc "Generate HAML & SASS"
 task :haml_sass do
   Rake::Task["parse_haml"].invoke
   Rake::Task["parse_sass"].invoke
+  Rake::Task["parse_coffee"].invoke
 end
 
 desc "Create per tag pages and rest"
