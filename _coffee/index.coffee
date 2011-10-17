@@ -13,7 +13,7 @@ TimeString = (time) ->
 	min + ":" + sec
 	
 $(document).ready ->
-	console.log($('.comment_count a'))
 	for comment_count in $('.comment_count a')
-		count = PadDigits(parseInt($(this).text()), 3);
-		console.log(count)
+		console.log(parseInt($(comment_count).text()))
+		count = PadDigits(parseInt($(this).text()), 3)
+		

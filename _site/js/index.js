@@ -20,13 +20,12 @@
   };
   $(document).ready(function() {
     var comment_count, count, _i, _len, _ref, _results;
-    console.log($('.comment_count a'));
     _ref = $('.comment_count a');
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       comment_count = _ref[_i];
-      count = PadDigits(parseInt($(this).text()), 3);
-      _results.push(console.log(count));
+      console.log(parseInt($(comment_count).text()));
+      _results.push(count = PadDigits(parseInt($(this).text()), 3));
     }
     return _results;
   });
