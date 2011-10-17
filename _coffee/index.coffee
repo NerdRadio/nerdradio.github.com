@@ -13,7 +13,11 @@ TimeString = (time) ->
 	min + ":" + sec
 	
 $(document).ready ->
-	for comment_count in $('.comment_count a')
-		console.log(parseInt($(comment_count).text()))
-		count = PadDigits(parseInt($(this).text()), 3)
-		
+	for comment_count in $('.episode .comment_count a')
+		count = PadDigits(parseInt($(comment_count).text()), 3)
+		count_array = count.split('')
+		output = ''
+		for element in count_array
+			output += '<span class="count_'+element+'">'+element+'</span>'
+		$(this).html(comment_count)
+

@@ -19,13 +19,19 @@
     return min + ":" + sec;
   };
   $(document).ready(function() {
-    var comment_count, count, _i, _len, _ref, _results;
-    _ref = $('.comment_count a');
+    var comment_count, count, count_array, element, output, _i, _j, _len, _len2, _ref, _results;
+    _ref = $('.episode .comment_count a');
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       comment_count = _ref[_i];
-      console.log(parseInt($(comment_count).text()));
-      _results.push(count = PadDigits(parseInt($(this).text()), 3));
+      count = PadDigits(parseInt($(comment_count).text()), 3);
+      count_array = count.split('');
+      output = '';
+      for (_j = 0, _len2 = count_array.length; _j < _len2; _j++) {
+        element = count_array[_j];
+        output += '<span class="count_' + element + '">' + element + '</span>';
+      }
+      _results.push($(this).html(comment_count));
     }
     return _results;
   });
