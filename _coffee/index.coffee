@@ -8,50 +8,72 @@ PadDigits = (n, totalDigits) ->
 
 TimeString = (time) ->
 	min = Math.floor(time/60)
+	min = PadDigits(min, 2)
 	sec = Math.floor(60 * ((time/60) - Math.floor(time/60)))
 	sec = PadDigits(sec, 2)
 	min + ":" + sec
 
-RenderCommentCounter = (comment_count) ->
-	count = PadDigits(parseInt($(comment_count).text()), 3)
+RenderCommentCounter = (commentCount) ->
+	count = PadDigits(parseInt($(commentCount).text()), 3)
 	count_array = count.split('')
 	output = ''
 	for digit in count_array
 		output += "<span class=\"count_#{digit}\">#{digit}</span>"
-	$(comment_count).html(output)
+	$(commentCount).html(output)
+
+PlayEpisodeAudioHandler = (event) ->
+	$(event.currentTarget).siblings('.play').addClass('on')
+	$(event.currentTarget).siblings('.pause').removeClass('on')
+
+PauseEpisodeAudioHandler = (event) ->
+	$(event.currentTarget).siblings('.pause').addClass('on')
+	$(event.currentTarget).siblings('.play').removeClass('on')
+
+EndEpisodeAudioHandler = (event) ->
+	$(event.currentTarget).siblings('.pause').removeClass('on')
+	$(event.currentTarget).siblings('.play').removeClass('on')
 	
+TimeUpdateEpisodeHandler = (event) ->
+	currentTime = TimeString(event.currentTarget.currentTime)
+	$(event.currentTarget).siblings('.data').children('.playhead').html(currentTime)
+
+DurationUpdateEpisodeHandler = (event) ->
+	totalTime = TimeString(event.currentTarget.duration)
+	$(event.currentTarget).siblings('.data').children('.total_time').html(totalTime)
+
+VolumeChange = (value) ->
+	for audio in $('audio')
+		audio.volume = value
+	for volumeElement in $('.episode .volume')
+		$(volumeElement).children('.left').css('width', value * 100);
+		$(volumeElement).children('.right').css('width', 100 - (value * 100));
+		
+Play = (audioElement) ->
+	for audio in $('audio')
+		if audioElement == audio
+			audio.play()
+		else
+			audio.pause()
+
 $ ->
-	RenderCommentCounter comment_count for comment_count in $('.episode .comment_count a')
+	RenderCommentCounter commentCount for commentCount in $('.episode .comment_count a')
 	if Modernizr.audio.mp3 == false
 		$('.episode .audio').addClass('disabled')
 		$('.episode .audio_download').removeClass('disabled')
 	else
 		for audioElement in $('.episode audio')
-			$(audioElement).bind 'durationchange', ->
-				totalTime = TimeString($(audioElement)[0].duration)
-				$($($(audioElement)[0]).siblings('.data')).children('.total_time').html(totalTime)
-			$(audioElement).bind 'timeupdate', ->
-				currentTime = TimeString(audioElement.currentTime)
-				$($($(audioElement)[0]).siblings('.data')).children('.playhead').html(currentTime)
-			$(audioElement).bind 'play', ->
-				$($($(audioElement)[0]).siblings('.play')).addClass('on')
-				$($($(audioElement)[0]).siblings('.pause')).removeClass('on')
-			$(audioElement).bind 'pause', ->
-				$($($(audioElement)[0]).siblings('.pause')).addClass('on')
-				$($($(audioElement)[0]).siblings('.play')).removeClass('on')
-			$(audioElement).bind 'ended', ->
-				$($($(audioElement)[0]).siblings('.pause')).removeClass('on')
-				$($($(audioElement)[0]).siblings('.play')).removeClass('on')
+			$(audioElement).bind 'play', PlayEpisodeAudioHandler
+			$(audioElement).bind 'pause', PauseEpisodeAudioHandler
+			$(audioElement).bind 'ended', EndEpisodeAudioHandler
+			$(audioElement).bind 'timeupdate', TimeUpdateEpisodeHandler
+			$(audioElement).bind 'durationchange', DurationUpdateEpisodeHandler
 		$('.episode .pause').click (event) ->
 			$(event.target).siblings('audio')[0].pause()
 		$('.episode .play').click (event) ->
-			$(event.target).siblings('audio')[0].play()
+			Play $(event.target).siblings('audio')[0]
 		for volumeDiv in $('.episode .volume')
 			$(volumeDiv).click (event) ->
 				offset = $(event.currentTarget).offset()
 				clickPosition = event.pageX - offset.left + 1
-				audio = $(event.currentTarget).parent().siblings('audio')[0];
-				audio.volume = clickPosition/100;
-				$(event.currentTarget).children('.left').css('width', clickPosition);
-				$(event.currentTarget).children('.right').css('width', 100 - clickPosition);
+				VolumeChange clickPosition/100
 

@@ -1,5 +1,5 @@
 (function() {
-  var PadDigits, RenderCommentCounter, TimeString;
+  var DurationUpdateEpisodeHandler, EndEpisodeAudioHandler, PadDigits, PauseEpisodeAudioHandler, Play, PlayEpisodeAudioHandler, RenderCommentCounter, TimeString, TimeUpdateEpisodeHandler, VolumeChange;
   PadDigits = function(n, totalDigits) {
     var i, pad, _ref;
     n = n.toString();
@@ -14,27 +14,76 @@
   TimeString = function(time) {
     var min, sec;
     min = Math.floor(time / 60);
+    min = PadDigits(min, 2);
     sec = Math.floor(60 * ((time / 60) - Math.floor(time / 60)));
     sec = PadDigits(sec, 2);
     return min + ":" + sec;
   };
-  RenderCommentCounter = function(comment_count) {
+  RenderCommentCounter = function(commentCount) {
     var count, count_array, digit, output, _i, _len;
-    count = PadDigits(parseInt($(comment_count).text()), 3);
+    count = PadDigits(parseInt($(commentCount).text()), 3);
     count_array = count.split('');
     output = '';
     for (_i = 0, _len = count_array.length; _i < _len; _i++) {
       digit = count_array[_i];
       output += "<span class=\"count_" + digit + "\">" + digit + "</span>";
     }
-    return $(comment_count).html(output);
+    return $(commentCount).html(output);
+  };
+  PlayEpisodeAudioHandler = function(event) {
+    $(event.currentTarget).siblings('.play').addClass('on');
+    return $(event.currentTarget).siblings('.pause').removeClass('on');
+  };
+  PauseEpisodeAudioHandler = function(event) {
+    $(event.currentTarget).siblings('.pause').addClass('on');
+    return $(event.currentTarget).siblings('.play').removeClass('on');
+  };
+  EndEpisodeAudioHandler = function(event) {
+    $(event.currentTarget).siblings('.pause').removeClass('on');
+    return $(event.currentTarget).siblings('.play').removeClass('on');
+  };
+  TimeUpdateEpisodeHandler = function(event) {
+    var currentTime;
+    currentTime = TimeString(event.currentTarget.currentTime);
+    return $(event.currentTarget).siblings('.data').children('.playhead').html(currentTime);
+  };
+  DurationUpdateEpisodeHandler = function(event) {
+    var totalTime;
+    totalTime = TimeString(event.currentTarget.duration);
+    return $(event.currentTarget).siblings('.data').children('.total_time').html(totalTime);
+  };
+  VolumeChange = function(value) {
+    var audio, volumeElement, _i, _j, _len, _len2, _ref, _ref2, _results;
+    _ref = $('audio');
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      audio = _ref[_i];
+      audio.volume = value;
+    }
+    _ref2 = $('.episode .volume');
+    _results = [];
+    for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+      volumeElement = _ref2[_j];
+      $(volumeElement).children('.left').css('width', value * 100);
+      _results.push($(volumeElement).children('.right').css('width', 100 - (value * 100)));
+    }
+    return _results;
+  };
+  Play = function(audioElement) {
+    var audio, _i, _len, _ref, _results;
+    _ref = $('audio');
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      audio = _ref[_i];
+      _results.push(audioElement === audio ? audio.play() : audio.pause());
+    }
+    return _results;
   };
   $(function() {
-    var audioElement, comment_count, volumeDiv, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3, _results;
+    var audioElement, commentCount, volumeDiv, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3, _results;
     _ref = $('.episode .comment_count a');
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      comment_count = _ref[_i];
-      RenderCommentCounter(comment_count);
+      commentCount = _ref[_i];
+      RenderCommentCounter(commentCount);
     }
     if (Modernizr.audio.mp3 === false) {
       $('.episode .audio').addClass('disabled');
@@ -43,47 +92,27 @@
       _ref2 = $('.episode audio');
       for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
         audioElement = _ref2[_j];
-        $(audioElement).bind('durationchange', function() {
-          var totalTime;
-          totalTime = TimeString($(audioElement)[0].duration);
-          return $($($(audioElement)[0]).siblings('.data')).children('.total_time').html(totalTime);
-        });
-        $(audioElement).bind('timeupdate', function() {
-          var currentTime;
-          currentTime = TimeString(audioElement.currentTime);
-          return $($($(audioElement)[0]).siblings('.data')).children('.playhead').html(currentTime);
-        });
-        $(audioElement).bind('play', function() {
-          $($($(audioElement)[0]).siblings('.play')).addClass('on');
-          return $($($(audioElement)[0]).siblings('.pause')).removeClass('on');
-        });
-        $(audioElement).bind('pause', function() {
-          $($($(audioElement)[0]).siblings('.pause')).addClass('on');
-          return $($($(audioElement)[0]).siblings('.play')).removeClass('on');
-        });
-        $(audioElement).bind('ended', function() {
-          $($($(audioElement)[0]).siblings('.pause')).removeClass('on');
-          return $($($(audioElement)[0]).siblings('.play')).removeClass('on');
-        });
+        $(audioElement).bind('play', PlayEpisodeAudioHandler);
+        $(audioElement).bind('pause', PauseEpisodeAudioHandler);
+        $(audioElement).bind('ended', EndEpisodeAudioHandler);
+        $(audioElement).bind('timeupdate', TimeUpdateEpisodeHandler);
+        $(audioElement).bind('durationchange', DurationUpdateEpisodeHandler);
       }
       $('.episode .pause').click(function(event) {
         return $(event.target).siblings('audio')[0].pause();
       });
       $('.episode .play').click(function(event) {
-        return $(event.target).siblings('audio')[0].play();
+        return Play($(event.target).siblings('audio')[0]);
       });
       _ref3 = $('.episode .volume');
       _results = [];
       for (_k = 0, _len3 = _ref3.length; _k < _len3; _k++) {
         volumeDiv = _ref3[_k];
         _results.push($(volumeDiv).click(function(event) {
-          var audio, clickPosition, offset;
+          var clickPosition, offset;
           offset = $(event.currentTarget).offset();
           clickPosition = event.pageX - offset.left + 1;
-          audio = $(event.currentTarget).parent().siblings('audio')[0];
-          audio.volume = clickPosition / 100;
-          $(event.currentTarget).children('.left').css('width', clickPosition);
-          return $(event.currentTarget).children('.right').css('width', 100 - clickPosition);
+          return VolumeChange(clickPosition / 100);
         }));
       }
       return _results;
