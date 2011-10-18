@@ -12,18 +12,16 @@ TimeString = (time) ->
 	sec = PadDigits(sec, 2)
 	min + ":" + sec
 
-RenderCommentCounters = ->
-	for comment_count in $('.episode .comment_count a')
-		count = PadDigits(parseInt($(comment_count).text()), 3)
-		count_array = count.split('')
-		output = ''
-		for digit in count_array
-			output += "<span class=\"count_#{digit}\">#{digit}</span>"
-		$(comment_count).html(output)
+RenderCommentCounter = (comment_count) ->
+	count = PadDigits(parseInt($(comment_count).text()), 3)
+	count_array = count.split('')
+	output = ''
+	for digit in count_array
+		output += "<span class=\"count_#{digit}\">#{digit}</span>"
+	$(comment_count).html(output)
 	
 $ ->
-	RenderCommentCounters()
-	
+	RenderCommentCounter comment_count for comment_count in $('.episode .comment_count a')
 	if Modernizr.audio.mp3 == false
 		$('.episode .audio').addClass('disabled')
 		$('.episode .audio_download').removeClass('disabled')
@@ -44,9 +42,16 @@ $ ->
 			$(audioElement).bind 'ended', ->
 				$($($(audioElement)[0]).siblings('.pause')).removeClass('on')
 				$($($(audioElement)[0]).siblings('.play')).removeClass('on')
-		$('.episode .pause').click =>
-			alert 'tada'
-			# $(this).siblings('audio')[0].pause()
-		$('.episode .play').click =>
-			# $(this).siblings('audio')[0].play();
+		$('.episode .pause').click (event) ->
+			$(event.target).siblings('audio')[0].pause()
+		$('.episode .play').click (event) ->
+			$(event.target).siblings('audio')[0].play()
+		for volumeDiv in $('.episode .volume')
+			$(volumeDiv).click (event) ->
+				offset = $(event.currentTarget).offset()
+				clickPosition = event.pageX - offset.left + 1
+				audio = $(event.currentTarget).parent().siblings('audio')[0];
+				audio.volume = clickPosition/100;
+				$(event.currentTarget).children('.left').css('width', clickPosition);
+				$(event.currentTarget).children('.right').css('width', 100 - clickPosition);
 

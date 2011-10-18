@@ -1,6 +1,5 @@
 (function() {
-  var PadDigits, RenderCommentCounters, TimeString;
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var PadDigits, RenderCommentCounter, TimeString;
   PadDigits = function(n, totalDigits) {
     var i, pad, _ref;
     n = n.toString();
@@ -19,33 +18,31 @@
     sec = PadDigits(sec, 2);
     return min + ":" + sec;
   };
-  RenderCommentCounters = function() {
-    var comment_count, count, count_array, digit, output, _i, _j, _len, _len2, _ref, _results;
-    _ref = $('.episode .comment_count a');
-    _results = [];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      comment_count = _ref[_i];
-      count = PadDigits(parseInt($(comment_count).text()), 3);
-      count_array = count.split('');
-      output = '';
-      for (_j = 0, _len2 = count_array.length; _j < _len2; _j++) {
-        digit = count_array[_j];
-        output += "<span class=\"count_" + digit + "\">" + digit + "</span>";
-      }
-      _results.push($(comment_count).html(output));
+  RenderCommentCounter = function(comment_count) {
+    var count, count_array, digit, output, _i, _len;
+    count = PadDigits(parseInt($(comment_count).text()), 3);
+    count_array = count.split('');
+    output = '';
+    for (_i = 0, _len = count_array.length; _i < _len; _i++) {
+      digit = count_array[_i];
+      output += "<span class=\"count_" + digit + "\">" + digit + "</span>";
     }
-    return _results;
+    return $(comment_count).html(output);
   };
   $(function() {
-    var audioElement, _i, _len, _ref;
-    RenderCommentCounters();
+    var audioElement, comment_count, volumeDiv, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3, _results;
+    _ref = $('.episode .comment_count a');
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      comment_count = _ref[_i];
+      RenderCommentCounter(comment_count);
+    }
     if (Modernizr.audio.mp3 === false) {
       $('.episode .audio').addClass('disabled');
       return $('.episode .audio_download').removeClass('disabled');
     } else {
-      _ref = $('.episode audio');
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        audioElement = _ref[_i];
+      _ref2 = $('.episode audio');
+      for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+        audioElement = _ref2[_j];
         $(audioElement).bind('durationchange', function() {
           var totalTime;
           totalTime = TimeString($(audioElement)[0].duration);
@@ -69,10 +66,27 @@
           return $($($(audioElement)[0]).siblings('.play')).removeClass('on');
         });
       }
-      $('.episode .pause').click(__bind(function() {
-        return alert('tada');
-      }, this));
-      return $('.episode .play').click(__bind(function() {}, this));
+      $('.episode .pause').click(function(event) {
+        return $(event.target).siblings('audio')[0].pause();
+      });
+      $('.episode .play').click(function(event) {
+        return $(event.target).siblings('audio')[0].play();
+      });
+      _ref3 = $('.episode .volume');
+      _results = [];
+      for (_k = 0, _len3 = _ref3.length; _k < _len3; _k++) {
+        volumeDiv = _ref3[_k];
+        _results.push($(volumeDiv).click(function(event) {
+          var audio, clickPosition, offset;
+          offset = $(event.currentTarget).offset();
+          clickPosition = event.pageX - offset.left + 1;
+          audio = $(event.currentTarget).parent().siblings('audio')[0];
+          audio.volume = clickPosition / 100;
+          $(event.currentTarget).children('.left').css('width', clickPosition);
+          return $(event.currentTarget).children('.right').css('width', 100 - clickPosition);
+        }));
+      }
+      return _results;
     }
   });
 }).call(this);
