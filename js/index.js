@@ -1,5 +1,5 @@
 (function() {
-  var CommentCount, PadDigits, TimeString;
+  var PadDigits, RenderCommentCounters, TimeString;
   PadDigits = function(n, totalDigits) {
     var i, pad, _ref;
     n = n.toString();
@@ -18,9 +18,8 @@
     sec = PadDigits(sec, 2);
     return min + ":" + sec;
   };
-  CommentCount = function() {
+  RenderCommentCounters = function() {
     var comment_count, count, count_array, digit, output, _i, _j, _len, _len2, _ref, _results;
-    console.log('test');
     _ref = $('.episode .comment_count a');
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -36,8 +35,24 @@
     }
     return _results;
   };
-  $(document).ready(function() {
-    console.log('ready');
-    return CommentCount();
+  $(function() {
+    var audioElement, _i, _len, _ref, _results;
+    RenderCommentCounters();
+    if (Modernizr.audio.mp3 === false) {
+      $('.episode .audio').addClass('disabled');
+      return $('.episode .audio_download').removeClass('disabled');
+    } else {
+      _ref = $('.episode audio');
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        audioElement = _ref[_i];
+        _results.push($(audioElement).bind('durationchange', function() {
+          var totalTime;
+          totalTime = TimeString($(audioElement)[0].duration);
+          return alert(totalTime);
+        }));
+      }
+      return _results;
+    }
   });
 }).call(this);
