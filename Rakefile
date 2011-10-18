@@ -10,6 +10,16 @@ task :parse_haml do
   puts "done."
 end
 
+desc "Parse haml includes"
+task :parse_haml_includes do
+  print "Parsing Haml includes..."
+  system(%{
+    cd _includes/haml && 
+    for f in *.haml; do [ -e $f ] && haml $f ../${f%.haml}.html; done
+  })
+  puts "done."
+end
+
 desc "Parse sass css"
 task :parse_sass do
   print "Parsing Sass _includes..."
@@ -34,6 +44,7 @@ task :haml_sass do
   Rake::Task["parse_haml"].invoke
   Rake::Task["parse_sass"].invoke
   Rake::Task["parse_coffee"].invoke
+  Rake::Task["parse_haml_includes"].invoke
 end
 
 desc "Create per tag pages and rest"

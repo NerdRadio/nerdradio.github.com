@@ -1,5 +1,5 @@
 (function() {
-  var DurationUpdateEpisodeHandler, EndEpisodeAudioHandler, PadDigits, PauseEpisodeAudioHandler, Play, PlayEpisodeAudioHandler, RenderCommentCounter, TimeString, TimeUpdateEpisodeHandler, VolumeChange;
+  var DurationUpdateEpisodeHandler, EndEpisodeAudioHandler, GlobalPlay, PadDigits, PauseEpisodeAudioHandler, PlayEpisodeAudioHandler, RenderCommentCounter, TimeString, TimeUpdateEpisodeHandler, VolumeChange;
   PadDigits = function(n, totalDigits) {
     var i, pad, _ref;
     n = n.toString();
@@ -68,7 +68,7 @@
     }
     return _results;
   };
-  Play = function(audioElement) {
+  GlobalPlay = function(audioElement) {
     var audio, _i, _len, _ref, _results;
     _ref = $('audio');
     _results = [];
@@ -102,7 +102,7 @@
         return $(event.target).siblings('audio')[0].pause();
       });
       $('.episode .play').click(function(event) {
-        return Play($(event.target).siblings('audio')[0]);
+        return GlobalPlay($(event.target).siblings('audio')[0]);
       });
       _ref3 = $('.episode .volume');
       _results = [];

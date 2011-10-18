@@ -5,6 +5,10 @@ guard 'rake', :task => 'parse_haml' do
 	watch(%r{_layouts/haml/})
 end
 
+guard 'rake', :task => 'parse_haml_includes' do
+	watch(%r{_includes/haml/})
+end
+
 guard 'rake', :task => 'parse_sass' do
 	watch(%r{_includes/sass/})
 end

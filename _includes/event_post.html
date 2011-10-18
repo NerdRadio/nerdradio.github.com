@@ -1,0 +1,41 @@
+<article class='event'><header>
+    <div class='post_image'>
+      <img alt='{{ post.title }}' src='{{ post.image_url }}' />
+    </div>
+    <h2 class='post_title'>{{ post.title }}</h2>
+    <div class='comment_count'>
+      <a href='{{ post.url }}#comments'>
+        {{ post.comment_count }}
+      </a>
+    </div>
+  </header><div class='guests'>
+    <h3>Guest List</h3>
+    <table>
+      {% for interview in post.interviews %}
+      <tr>
+        <td class='duration'>0m</td>
+        <td class='date'>{{ interview.date | date: "%a" }}</td>
+        <td class='name'>
+          {% if interview.title %}
+          <strong>{{ interview.title }}</strong>
+          with
+          {% endif %}
+          {% for guest in interview.guests %}
+          <a href='{{ guest.url }}'>{{ guest.name }}</a>
+          {% if forloop.length != forloop.index %},{% endif %}
+          {% endfor %}
+          <a class='player' href='#'>Play</a>
+          <audio class='event_player' preload='preload'>
+            <source src='{{ interview.audio_url }}' type='audio/mpeg'></source>
+          </audio>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class='gallery {{ post.flickr_tag }}'></div>
+  <div class='post_content'>
+    {{ post.excerpt }}
+    <a class='read_more' href='{{ post.url }}'>Full Post</a>
+  </div>
+</article>

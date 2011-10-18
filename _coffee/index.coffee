@@ -48,7 +48,7 @@ VolumeChange = (value) ->
 		$(volumeElement).children('.left').css('width', value * 100);
 		$(volumeElement).children('.right').css('width', 100 - (value * 100));
 		
-Play = (audioElement) ->
+GlobalPlay = (audioElement) ->
 	for audio in $('audio')
 		if audioElement == audio
 			audio.play()
@@ -70,7 +70,7 @@ $ ->
 		$('.episode .pause').click (event) ->
 			$(event.target).siblings('audio')[0].pause()
 		$('.episode .play').click (event) ->
-			Play $(event.target).siblings('audio')[0]
+			GlobalPlay $(event.target).siblings('audio')[0]
 		for volumeDiv in $('.episode .volume')
 			$(volumeDiv).click (event) ->
 				offset = $(event.currentTarget).offset()
