@@ -1,15 +1,1 @@
-<article class='episode_post'>
-  <header>
-    <h5 class='post_title'>{{ post.title }}</h5>
-    <div class='post_date'>{{ post.date }}</div>
-    <div class='comment_count'>
-      00{{ post.comment_count }}
-    </div>
-    <div class='guest'>{{ post.guest }}</div>
-    <div class='host'>{{ post.host }}</div>
-    <div class='producer'>{{ post.producer }}</div>
-  </header>
-  <div class='post_content'>
-    {{ post.content }}
-  </div>
-</article>
+{% include episode_post.html %}

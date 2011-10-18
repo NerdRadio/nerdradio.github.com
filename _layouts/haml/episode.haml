@@ -1,32 +1,7 @@
 = "---"
 layout: default
 = "---"
-%article.episode
-	%header
-		.post_image
-			%img{:src => "{{ page.image_url }}", :alt => "{{ page.title }}"}
-		%h2.post_title {{ page.title }}
-		.post_date &nbsp;{{ page.date | date_to_string }}
-		.comment_count
-			%a{:href => "#comments" } {{ page.comment_count }}		
-		.guest {{ page.guest }}
-		.host {{ page.host }}
-		.producer {{ page.producer }}
-		.audio
-			%a.pause{:href=>'#'} Pause
-			%a.play{:href=>'#'} Play
-			.data
-				.playhead 00:00
-				.total_time 88:88
-				.volume
-					100%
-					%span.left
-					%span.right
-			%audio.episode_player{:preload => "preload"}
-				%source{:type => "audio/mpeg", :src => "{{ page.audio_url }}"}
-		.audio_download.disabled
-			%a{:href=>"{{ page.audio_url }}"} Download the episode
-	.post_content {{ page.excerpt }}
+= "{% include episode_post.html %}"
 #disqus_thread
 	:javascript
 		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

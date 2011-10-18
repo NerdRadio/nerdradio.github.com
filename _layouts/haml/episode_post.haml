@@ -1,11 +1,1 @@
-%article.episode_post
-	%header
-		%h5.post_title {{ post.title }}
-		.post_date {{ post.date }}
-		.comment_count
-			00{{ post.comment_count }}
-		.guest {{ post.guest }}
-		.host {{ post.host }}
-		.producer {{ post.producer }}
-	.post_content	
-		{{ post.content }}
+= "{% include episode_post.html %}"

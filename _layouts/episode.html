@@ -1,41 +1,7 @@
 ---
 layout: default
 ---
-<article class='episode'>
-  <header>
-    <div class='post_image'>
-      <img alt='{{ page.title }}' src='{{ page.image_url }}' />
-    </div>
-    <h2 class='post_title'>{{ page.title }}</h2>
-    <div class='post_date'>&nbsp;{{ page.date | date_to_string }}</div>
-    <div class='comment_count'>
-      <a href='#comments'>{{ page.comment_count }}</a>
-    </div>
-    <div class='guest'>{{ page.guest }}</div>
-    <div class='host'>{{ page.host }}</div>
-    <div class='producer'>{{ page.producer }}</div>
-    <div class='audio'>
-      <a class='pause' href='#'>Pause</a>
-      <a class='play' href='#'>Play</a>
-      <div class='data'>
-        <div class='playhead'>00:00</div>
-        <div class='total_time'>88:88</div>
-        <div class='volume'>
-          100%
-          <span class='left'></span>
-          <span class='right'></span>
-        </div>
-      </div>
-      <audio class='episode_player' preload='preload'>
-        <source src='{{ page.audio_url }}' type='audio/mpeg'></source>
-      </audio>
-    </div>
-    <div class='audio_download disabled'>
-      <a href='{{ page.audio_url }}'>Download the episode</a>
-    </div>
-  </header>
-  <div class='post_content'>{{ page.excerpt }}</div>
-</article>
+{% include episode_post.html %}
 <div id='disqus_thread'>
   <script type='text/javascript'>
     //<![CDATA[
