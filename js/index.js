@@ -1,5 +1,6 @@
 (function() {
   var PadDigits, RenderCommentCounters, TimeString;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   PadDigits = function(n, totalDigits) {
     var i, pad, _ref;
     n = n.toString();
@@ -36,23 +37,42 @@
     return _results;
   };
   $(function() {
-    var audioElement, _i, _len, _ref, _results;
+    var audioElement, _i, _len, _ref;
     RenderCommentCounters();
     if (Modernizr.audio.mp3 === false) {
       $('.episode .audio').addClass('disabled');
       return $('.episode .audio_download').removeClass('disabled');
     } else {
       _ref = $('.episode audio');
-      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         audioElement = _ref[_i];
-        _results.push($(audioElement).bind('durationchange', function() {
+        $(audioElement).bind('durationchange', function() {
           var totalTime;
           totalTime = TimeString($(audioElement)[0].duration);
-          return alert(totalTime);
-        }));
+          return $($($(audioElement)[0]).siblings('.data')).children('.total_time').html(totalTime);
+        });
+        $(audioElement).bind('timeupdate', function() {
+          var currentTime;
+          currentTime = TimeString(audioElement.currentTime);
+          return $($($(audioElement)[0]).siblings('.data')).children('.playhead').html(currentTime);
+        });
+        $(audioElement).bind('play', function() {
+          $($($(audioElement)[0]).siblings('.play')).addClass('on');
+          return $($($(audioElement)[0]).siblings('.pause')).removeClass('on');
+        });
+        $(audioElement).bind('pause', function() {
+          $($($(audioElement)[0]).siblings('.pause')).addClass('on');
+          return $($($(audioElement)[0]).siblings('.play')).removeClass('on');
+        });
+        $(audioElement).bind('ended', function() {
+          $($($(audioElement)[0]).siblings('.pause')).removeClass('on');
+          return $($($(audioElement)[0]).siblings('.play')).removeClass('on');
+        });
       }
-      return _results;
+      $('.episode .pause').click(__bind(function() {
+        return alert('tada');
+      }, this));
+      return $('.episode .play').click(__bind(function() {}, this));
     }
   });
 }).call(this);

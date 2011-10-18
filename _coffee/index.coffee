@@ -30,7 +30,23 @@ $ ->
 	else
 		for audioElement in $('.episode audio')
 			$(audioElement).bind 'durationchange', ->
-				totalTime = TimeString($(audioElement)[0].duration);
-				alert totalTime
-	
+				totalTime = TimeString($(audioElement)[0].duration)
+				$($($(audioElement)[0]).siblings('.data')).children('.total_time').html(totalTime)
+			$(audioElement).bind 'timeupdate', ->
+				currentTime = TimeString(audioElement.currentTime)
+				$($($(audioElement)[0]).siblings('.data')).children('.playhead').html(currentTime)
+			$(audioElement).bind 'play', ->
+				$($($(audioElement)[0]).siblings('.play')).addClass('on')
+				$($($(audioElement)[0]).siblings('.pause')).removeClass('on')
+			$(audioElement).bind 'pause', ->
+				$($($(audioElement)[0]).siblings('.pause')).addClass('on')
+				$($($(audioElement)[0]).siblings('.play')).removeClass('on')
+			$(audioElement).bind 'ended', ->
+				$($($(audioElement)[0]).siblings('.pause')).removeClass('on')
+				$($($(audioElement)[0]).siblings('.play')).removeClass('on')
+		$('.episode .pause').click =>
+			alert 'tada'
+			# $(this).siblings('audio')[0].pause()
+		$('.episode .play').click =>
+			# $(this).siblings('audio')[0].play();
 
