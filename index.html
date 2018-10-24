@@ -1,14 +1,25 @@
----
-layout: default
-title: Home
----
-{% for post in site.posts %}
-	{% case post.category %}
-		{% when 'episode' %}
-			{% include episode_post.html %}
-		{% when 'event' %}
-			{% include event_post.html %}
-		{% else %}
-			{{ post.category }}
-	{% endcase %}
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Nerd Radio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style media="screen">
+      body {
+        margin: 0;
+        background: #f2f3f3;
+        font-family: sans-serif;
+        color: #4e4e4e;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/logo.png" alt="Nerd Radio" width="288">
+    <p>Nerd Radio was a podcast, it is currently retired.<br>It could return someday.</p>
+  </body>
+</html>
